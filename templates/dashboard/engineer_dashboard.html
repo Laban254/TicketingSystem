@@ -10,4 +10,27 @@
       <a href="{%url 'engineer-active-tickets'%}" class="btn btn-primary btn-sm">View Active Tickets</a>
     </div>
   </div>
+
+  <div>
+    <div class="row align-items-end">
+      <div class="col">
+        <h1 class="display-6 fw-bold">
+          Active Tickets <br />
+          {{active_tickets}}
+        </h1>
+      </div>
+      <div class="col">
+        <h1 class="display-6 fw-bold">
+          Closed Tickets <br />
+          {{closed_tickets}}
+        </h1>
+      </div>
+      <div class="col">
+        <h1 class="display-6 fw-bold">
+          Total Tickets <br />
+          {{tickets}}
+        </h1>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

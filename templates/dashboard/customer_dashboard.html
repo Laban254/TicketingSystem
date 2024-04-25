@@ -1,13 +1,38 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div class="card">
-    <div class="card-body">
-        <h2> customer dashboard</h2>
-      <p>It is a long established fact that a reader will be distracted by the readable
-         content of a page when looking at its layout. The point of usi</p>
-      <a href="{%url 'create-ticket'%}" class="btn btn-primary btn-sm">create ticket</a>
+  <div class="card-body">
+    <h2>customer dashboard</h2>
+    <p>
+      It is a long established fact that a reader will be distracted by the
+      readable content of a page when looking at its layout. The point of usi
+    </p>
+    <a href="{%url 'create-ticket'%}" class="btn btn-primary btn-sm"
+      >create ticket</a
+    >
+  </div>
+</div>
+
+<div>
+  <div class="row align-items-end">
+    <div class="col">
+      <h1 class="display-6 fw-bold">
+        Active Tickets <br />
+        {{active_tickets}}
+      </h1>
+    </div>
+    <div class="col">
+      <h1 class="display-6 fw-bold">
+        Closed Tickets <br />
+        {{closed_tickets}}
+      </h1>
+    </div>
+    <div class="col">
+      <h1 class="display-6 fw-bold">
+        Total Tickets <br />
+        {{tickets}}
+      </h1>
     </div>
   </div>
+</div>
 {% endblock content %}

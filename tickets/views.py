@@ -5,6 +5,9 @@ import string
 from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
+
+
 from .form import CreateTicketForm, AssignTicketForm
 from.models import Ticket
 
@@ -21,6 +24,12 @@ def create_ticket(request):
                 try:
                     var.ticket_id = id
                     var.save()
+                    # send email functionality
+                    subject = f"{var.ticket_title} #{var.ticket_id}"
+                    message = "Thank you for creating a ticket , we will assign an Engineer soon"
+                    email_from = "kibe#gmail.com"
+                    recipient_list = [request.user.email]
+                    send_mail(subject, message, email_from, recipient_list)
                     messages.success(request, 'your ticket has been submitted')
                     return redirect('customer-active-tickets')
                 except IntegrityError:
