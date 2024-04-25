@@ -4,8 +4,11 @@ from django.shortcuts import get_object_or_404, render
 import string
 from django.db import IntegrityError
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from .form import CreateTicketForm, AssignTicketForm
 from.models import Ticket
+
+User = get_user_model()
 
 def create_ticket(request):
     if request.method == 'POST':
@@ -55,31 +58,33 @@ def engineer_resolved_tickets(request):
     return render(request, 'tickets/engineer_resolved_tickets.html', context)
 
 def assign_ticket(request, ticket_id):
-    ticket = Ticket.objects.filter(ticket_id=ticket_id)
+    ticket_instance = Ticket.objects.get(ticket_id=ticket_id)
+    
     if request.method == 'POST':
-        form = AssignTicketForm(request.POST, instance = ticket)
+        form = AssignTicketForm(request.POST, instance=ticket_instance)  # Pass request.POST to populate the form
         if form.is_valid():
+            var = form.save(commit=False)
+            var.is_assigned_to_engineer = True
+            var.status = "Active"
             var = form.save()
-            messages.success(request, f'Ticket has been assigned to {var.rngineer}')
+            messages.success(request, f'Ticket has been assigned to {var.engineer}')  # Use var.engineer instead of var.rngineer
             return redirect('ticket-queue')
         else:
-            messages.warning(request, 'something went wrong please check your input')
-            return redirect('assign-ticket')
+            messages.warning(request, 'Something went wrong. Please check your input.')
+            return redirect('assign-ticket', ticket_id=ticket_id)  # Redirect with ticket_id
     else:
-        form = AssignTicketForm()
-        context = {'form': form}
-        return render(request, 'ticket/assign_ticket.html', context)
-    
+        form = AssignTicketForm(instance=ticket_instance)
+        form.fields['engineer'].queryset = User.objects.filter(is_engineer=True)
+        context = {'form': form, 'ticket': ticket_instance}
+        return render(request, 'tickets/assign_ticket.html', context)
 
 
 def ticket_details(request, ticket_id):
-    # Retrieve the ticket object using get_object_or_404 to handle the case when the ticket doesn't exist
     ticket = get_object_or_404(Ticket, ticket_id=ticket_id)
     context = {'ticket': ticket}
     return render(request, 'tickets/ticket_details.html', context)
 
-
 def ticket_queue(request):
-    tickets =Ticket.objects.filter(is_assigned_to_engineer=False)
-    context = {'tickets': tickets}
-    return render(request, 'ticket/ticket_queue.html')
+    tickets = Ticket.objects.filter(is_assigned_to_engineer=False)
+    context = {'tickets': tickets}  # Pass 'tickets' in the context
+    return render(request, 'tickets/ticket_queue.html', context)

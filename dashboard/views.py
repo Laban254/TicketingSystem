@@ -7,3 +7,6 @@ def dashboard(request):
         return render(request, 'dashboard/customer_dashboard.html')
     elif request.user.is_engineer:
         return render(request, 'dashboard/engineer_dashboard.html')
+    elif request.user.is_superuser:
+        return render(request, 'dashboard/admin_dashboard.html')
+    
