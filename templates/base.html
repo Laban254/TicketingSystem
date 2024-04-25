@@ -34,8 +34,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                           <li><a class="dropdown-item" href="{%url 'customer-active-tickets'%}">Active</a></li>
-                          <li><a class="dropdown-item" href="#">Pending</a></li>
-                          <li><a class="dropdown-item" href="#">Resolved</a></li>
+                          <li><a class="dropdown-item" href="{%url 'customer-resolved-tickets'%}">Resolved</a></li>
                         </ul>
                       </li>
                     {%endif%}
@@ -46,8 +45,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                           <li><a class="dropdown-item" href="{%url 'engineer-active-tickets'%}">Active</a></li>
-                          <li><a class="dropdown-item" href="#">Pending</a></li>
-                          <li><a class="dropdown-item" href="#">Resolved</a></li>
+                          <li><a class="dropdown-item" href="{%url 'engineer-resolved-tickets'%}">Resolved</a></li>
                         </ul>
                       </li>
                       {%endif%}

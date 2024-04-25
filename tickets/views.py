@@ -97,3 +97,20 @@ def ticket_queue(request):
     tickets = Ticket.objects.filter(is_assigned_to_engineer=False)
     context = {'tickets': tickets}  # Pass 'tickets' in the context
     return render(request, 'tickets/ticket_queue.html', context)
+
+def resolve_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, ticket_id=ticket_id)
+    
+    if request.method == "POST":
+        resolution = request.POST.get('resolution', '')
+        if resolution:
+            ticket.resolution_steps = resolution
+            ticket.is_resolved = True
+            ticket.status = "Resolved"
+            ticket.save()
+            messages.success(request, "Ticket is now resolved and closed.")
+            return redirect('ticket-details', ticket_id=ticket_id)
+        else:
+            messages.error(request, "Resolution steps are required.")
+    
+    return redirect('ticket-details', ticket_id=ticket_id)
