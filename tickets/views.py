@@ -43,7 +43,16 @@ def customer_resolved_tickets(request):
     context = {'tickets': tickets}
     return render(request, 'tickets/customer_resolved_tickets.html', context)
 
+def engineer_active_tickets(request):
+    tickets = Ticket.objects.filter(engineer=request.user, is_resolved=False).order_by('-created_on')
+    context = {'tickets': tickets}
+    return render(request, 'tickets/engineer_active_tickets.html', context)
 
+
+def engineer_resolved_tickets(request):
+    tickets = Ticket.objects.filter(engineer=request.user, is_resolved=True).order_by('-created_on')
+    context = {'tickets': tickets}
+    return render(request, 'tickets/engineer_resolved_tickets.html', context)
 
 def assign_ticket(request, ticket_id):
     ticket = Ticket.objects.filter(ticket_id=ticket_id)
