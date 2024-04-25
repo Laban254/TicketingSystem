@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-dashboard
+
+<div class="card">
+    <div class="card-body">
+        <h2> customer dashboard</h2>
+      <p>It is a long established fact that a reader will be distracted by the readable
+         content of a page when looking at its layout. The point of usi</p>
+      <a href="{%url 'create-ticket'%}" class="btn btn-primary btn-sm">create ticket</a>
+    </div>
+  </div>
 {% endblock content %}
