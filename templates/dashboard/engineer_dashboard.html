@@ -1,36 +1,51 @@
 {% extends "base.html" %}
-
+{% load static%}
 {% block content %}
 
-<div class="card">
-    <div class="card-body">
-        <h2> Engineer dashboard</h2>
-      <p>It is a long established fact that a reader will be distracted by the readable
-         content of a page when looking at its layout. The point of usi</p>
-      <a href="{%url 'engineer-active-tickets'%}" class="btn btn-primary btn-sm">View Active Tickets</a>
+<div class="card mt-5 mb-5">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'assets/engineer.webp' %}" class="img-fluid rounded-start" alt="Welcome Image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">Welcome to Engineer Dashboard {{request.user.email}} </h2>
+        <p class="card-text">
+          Welcome to your engineer dashboard! Get ready to dive into action and make a difference.
+          Here, you have the tools to view and manage the tickets assigned to you.
+          Explore the active tickets to see the tasks awaiting your expertise, and feel empowered to provide efficient solutions.
+        </p>
+        <a href="{% url 'engineer-active-tickets' %}" class="btn btn-primary btn-sm">View Active Tickets</a>
+      </div>
     </div>
   </div>
+</div>
 
-  <div>
-    <div class="row align-items-end">
-      <div class="col">
-        <h1 class="display-6 fw-bold">
-          Active Tickets <br />
-          {{active_tickets}}
-        </h1>
-      </div>
-      <div class="col">
-        <h1 class="display-6 fw-bold">
-          Closed Tickets <br />
-          {{closed_tickets}}
-        </h1>
-      </div>
-      <div class="col">
-        <h1 class="display-6 fw-bold">
-          Total Tickets <br />
-          {{tickets}}
-        </h1>
+<div class="row mt-4">
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Active Tickets <i class="fas fa-exclamation-circle text-warning"></i></h3><br>
+        <p class="card-text">You have <b>{{ active_tickets }}</b> active tickets.</p>
       </div>
     </div>
   </div>
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Closed Tickets <i class="fas fa-check-circle text-success"></i></h3><br>
+        <p class="card-text">You have closed <b>{{ closed_tickets }}</b> tickets.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Total Tickets <i class="fas fa-ticket-alt text-primary"></i></h3><br>
+        <p class="card-text">You have a total of <b>{{ tickets }}</b> tickets.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}

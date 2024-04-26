@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -9,81 +10,75 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 
-    <title>{% block title %}Django Login{% endblock %}</title>
+
+    <title >{% block title %}TicketWise{% endblock %}</title>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">Your Website</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{%url 'dashboard'%}">Dashboard</a>
-                    </li>
-                    {%if request.user.is_customer%}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Ticket status
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <li><a class="dropdown-item" href="{%url 'customer-active-tickets'%}">Active</a></li>
-                          <li><a class="dropdown-item" href="{%url 'customer-resolved-tickets'%}">Resolved</a></li>
-                        </ul>
-                      </li>
-                    {%endif%}
-                    {%if request.user.is_engineer%}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Ticket status
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <li><a class="dropdown-item" href="{%url 'engineer-active-tickets'%}">Active</a></li>
-                          <li><a class="dropdown-item" href="{%url 'engineer-resolved-tickets'%}">Resolved</a></li>
-                        </ul>
-                      </li>
-                      {%endif%}
-
-
-                
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{%url 'accounts:logout'%}">Logout</a>
-                    
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> {{ request.user.email }} </a>
-                    </li>
-                    
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{%url 'accounts:login'%}">Login</a>
-                    </li>
-                    
-                {% endif %}
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">TicketWise</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        {% if request.user.is_customer %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Customer Tickets
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'customer-active-tickets' %}">Active</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'customer-resolved-tickets' %}">Resolved</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if request.user.is_engineer %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Engineer Tickets
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'engineer-active-tickets' %}">Active</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'engineer-resolved-tickets' %}">Resolved</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link disabled">{{ request.user.email }}</span>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<!-- Navbar -->
-
+    </nav>
 
 <!-- Main content -->
-<div class="container">
+<div class="container mt-3"> <!-- Add top margin here -->
     {% block content %}
     {% endblock %}
 </div>
-<!-- Main content -->
+
+
+{% block footer %}
+    
+{% endblock %}
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

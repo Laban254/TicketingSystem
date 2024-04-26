@@ -3,8 +3,8 @@
 {% load humanize %}
 
 {% block content %}
-<div class="container mb-4">
-    <div class="row p-5 mb-4 bg-light rounded-3 shadow-lg">
+<div class="container mb-4 mt-5">
+    <div class="row p-5 mt-5 mb-4 bg-light rounded-3 shadow-lg">
         <div class="col-md-8">
             <div class="py-8">
                 <h1 class="display-6 "><b>{{ ticket.ticket_title }}</b></h1>
@@ -27,26 +27,25 @@
                     <h2 class="display-6">Quick Info</h2>
                     <p class="text-secondary">Detailed info</p>
                     <ul class="icon-list">
-                        <li> <b> Ticket Unique ID: </b> {{ticket.ticket_id}} </li>
-                        <li> <b> Customer: </b> {{ticket.customer}} </li>
-                        <li> <b> Engineer: </b> {{ticket.engineer}} </li>
-                        <li> <b> Created On: </b> {{ticket.created_on}} </li>
+                        <li> <i class="fas fa-ticket-alt"></i> <b> Ticket Unique ID: </b> {{ticket.ticket_id}} </li>
+                        <li> <i class="fas fa-user"></i> <b> Customer: </b> {{ticket.customer}} </li>
+                        <li> <i class="fas fa-tools"></i> <b> Engineer: </b> {{ticket.engineer}} </li>
+                        <li> <i class="far fa-calendar-alt"></i> <b> Created On: </b> {{ticket.created_on}} </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-  
 </div>
-{%if ticket.is_resolved%}
+{% if ticket.is_resolved %}
 <div class="card">
     <div class="card-body">
-      {{ticket.resolution_steps}}
+        {{ticket.resolution_steps}}
     </div>
-  </div>
-{%else%}
-{%if request.user.is_engineer%}
-<<div class="card bg-light rounded-3 shadow-lg"> 
+</div>
+{% else %}
+{% if request.user.is_engineer %}
+<div class="card bg-light rounded-3 shadow-lg">
     <div class="card-body">
         <h5 class="card-title">Resolution Steps</h5>
         <form action="{% url 'resolve-ticket' ticket.ticket_id %}" method="POST">
@@ -59,7 +58,6 @@
         </form>
     </div>
 </div>
-
-{%endif%}
-{%endif%}
+{% endif %}
+{% endif %}
 {% endblock content %}

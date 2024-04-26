@@ -1,38 +1,52 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{%load static%}
 
-<div class="card">
-  <div class="card-body">
-    <h2>customer dashboard</h2>
-    <p>
-      It is a long established fact that a reader will be distracted by the
-      readable content of a page when looking at its layout. The point of usi
-    </p>
-    <a href="{%url 'create-ticket'%}" class="btn btn-primary btn-sm"
-      >create ticket</a
-    >
+{% block content %}
+
+<!-- Welcome Card with Image -->
+<div class="card mt-5 mb-5">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'assets/customer.webp' %}" class="img-fluid rounded-start" alt="Welcome Image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">Welcome to Your Customer Dashboard {{request.user.email}}</h2>
+        <p class="card-text">
+          Welcome to your customer dashboard! Here, you can manage your tickets and get support easily. If you have any questions, issues, or suggestions, don't hesitate to create a ticket. Our team is here to assist you.
+        </p>
+        <a href="{% url 'create-ticket'%}" class="btn btn-primary btn-sm">Create Ticket</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<div>
-  <div class="row align-items-end">
-    <div class="col">
-      <h1 class="display-6 fw-bold">
-        Active Tickets <br />
-        {{active_tickets}}
-      </h1>
+<!-- Ticket Statistics Cards -->
+<div class="row mt-4">
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Active Tickets <i class="fas fa-exclamation-circle text-warning"></i></h3> <br>
+        <p class="card-text">You  have <b>{{ active_tickets }} </b>active tickets.</p>
+      </div>
     </div>
-    <div class="col">
-      <h1 class="display-6 fw-bold">
-        Closed Tickets <br />
-        {{closed_tickets}}
-      </h1>
+  </div>
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Closed Tickets <i class="fas fa-check-circle text-success"></i></h3> <br>
+        <p class="card-text">You have closed <b>{{ closed_tickets }}</b> tickets.</p>
+      </div>
     </div>
-    <div class="col">
-      <h1 class="display-6 fw-bold">
-        Total Tickets <br />
-        {{tickets}}
-      </h1>
+  </div>
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Total Tickets <i class="fas fa-ticket-alt text-primary"></i></h3> <br>
+        <p class="card-text">You have a total of <b>{{ tickets }}</b> tickets.</p>
+      </div>
     </div>
   </div>
 </div>
+
 {% endblock content %}

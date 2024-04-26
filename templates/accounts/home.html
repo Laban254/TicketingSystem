@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="hero-title">Welcome to Your Ticketing System</h1>
+                    <p class="hero-subtitle">Efficiently manage tasks, track progress, and provide exceptional support.</p>
+                    <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-ticket-alt feature-icon"></i>
+                            <h4 class="card-title">Create a Ticket</h4>
+                            <p class="card-text">Easily create a new ticket to report an issue or request assistance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-tasks feature-icon"></i>
+                            <h4 class="card-title">Assign Tasks</h4>
+                            <p class="card-text">Admins can assign tasks to specific engineers or support staff based on workload and expertise.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-history feature-icon"></i>
+                            <h4 class="card-title">Track Progress</h4>
+                            <p class="card-text">Monitor the status of your tickets and track resolution progress.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

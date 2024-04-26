@@ -46,5 +46,9 @@ def logout_user(request):
     messages.success(request, 'Active session ended. login to continue')
     return redirect('accounts:login')
 
+def homepage(request):
+    # Add your logic here to render the homepage template
+    return render(request, 'accounts/home.html')
+
 # change password
 # update profile

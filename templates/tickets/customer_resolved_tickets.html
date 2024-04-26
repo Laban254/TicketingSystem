@@ -10,17 +10,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{ ticket.ticket_title }}</h5>
                 <p class="card-text">
-                    {% if ticket.status == 'Pending' %}
-                    Status: <span class="badge bg-warning">Pending</span>
-                    {% elif ticket.status == 'Active' %}
-                    Status: <span class="badge bg-success">Active</span>
-                    {% elif ticket.status == 'Resolved' %}
-                    Status: <span class="badge bg-danger">Resolved</span>
-                    {% endif %}
+                    <span class="badge {% if ticket.status == 'Pending' %}bg-warning{% elif ticket.status == 'Active' %}bg-success{% elif ticket.status == 'Resolved' %}bg-danger{% endif %}">{{ ticket.status }}</span>
                 </p>
             </div>
-            <a href="{%url 'ticket-details' ticket.ticket_id%}" class="btn btn-primary btn-sm mt-auto"> Ticket Details</a>
-            <div class="card-footer mt-auto">
+            <div class="card-footer">
+                <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">Ticket Details</a> <br>
                 <small class="text-muted">Created {{ ticket.created_on | naturaltime }}</small>
             </div>
         </div>
