@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {%load static%}
 {% block content %}
-<div class="card mt-5 mb-5">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{% static 'assets/admin.webp' %}" class="img-fluid rounded-start" alt="Welcome Image">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h2 class="card-title">Welcome to Your Dashboard, {{request.user.email}}</h2>
-        <p class="card-text">
-          It's great to see you here! Take a moment to review and manage the queue of issues awaiting assignment. 
-          Your keen oversight ensures that our team stays on track and delivers top-notch solutions promptly.
-        </p>
-        <a href="{% url 'ticket-queue' %}" class="btn btn-primary btn-sm">Manage Queue</a>
+<div class="container my-4 p-4 border rounded bg-light">
+  <div class="card mt-5 mb-5">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'assets/admin.webp' %}" class="img-fluid rounded-start" alt="Welcome Image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">Welcome to Your Dashboard, {{request.user.email}}</h2>
+          <p class="card-text">
+            It's great to see you here! Take a moment to review and manage the queue of issues awaiting assignment. 
+            Your keen oversight ensures that our team stays on track and delivers top-notch solutions promptly.
+          </p>
+          <a href="{% url 'ticket-queue' %}" class="btn btn-primary btn-sm">Manage Queue</a>
+        </div>
       </div>
     </div>
   </div>
