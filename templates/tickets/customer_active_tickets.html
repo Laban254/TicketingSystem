@@ -3,34 +3,35 @@
 {% load humanize %}
 
 {% block content %}
-<div class="row row-cols-1 row-cols-md-4 g-4">
-    {% for ticket in tickets %}
-    <div class="col">
-        <div class="card h-100 d-flex flex-column align-items-stretch">
-            <div class="card-body">
-                <h5 class="card-title">{{ ticket.ticket_title }}</h5>
-                <p class="card-text">
-                    {% if ticket.status == 'Pending' %}
-                    <span class="badge bg-warning">Pending</span>
-                    {% elif ticket.status == 'Active' %}
-                    <span class="badge bg-success">Active</span>
-                    {% elif ticket.status == 'Resolved' %}
-                    <span class="badge bg-danger">Resolved</span>
-                    {% endif %}
-                </p>
-                {% comment %} <p class="card-text">
-                    <small class="text-muted">Created {{ ticket.created_on | naturaltime }}</small>
-                </p> {% endcomment %}
-            </div>
-            {% comment %} <div class="card-footer mt-auto">
-                <small class="text-muted">Created {{ ticket.created_on | naturaltime }}</small>
-            </div> {% endcomment %}
-            <div class="card-footer">
-                <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">Ticket Details</a> <br>
-                <small class="text-muted">Created {{ ticket.created_on | naturaltime }}</small>
-            </div>
+<div class="container my-4 p-4 border rounded bg-light">
+    <div class="row justify-content-center mb-4">
+        <div class="col-auto">
+            <h2 class="display-6">Active Tickets</h2>
         </div>
     </div>
-    {% endfor %}
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for ticket in tickets %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ticket.ticket_title }}</h5>
+                    <p class="card-text">
+                        {% if ticket.status == 'Pending' %}
+                        <span class="badge bg-warning">Pending</span>
+                        {% elif ticket.status == 'Active' %}
+                        <span class="badge bg-success">Active</span>
+                        {% elif ticket.status == 'Resolved' %}
+                        <span class="badge bg-danger">Resolved</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="card-footer mt-auto bg-light">
+                    <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">Ticket Details</a>
+                    <small class="text-muted d-block mt-2">Created {{ ticket.created_on | naturaltime }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}
