@@ -12,6 +12,7 @@ def dashboard(request):
             'closed_tickets': closed_tickets
         }
         return render(request, 'dashboard/customer_dashboard.html', context)
+    
     elif request.user.is_engineer:
         tickets = Ticket.objects.filter(engineer=request.user).count()
         active_tickets = Ticket.objects.filter(engineer=request.user, is_resolved=False).count()
@@ -21,7 +22,7 @@ def dashboard(request):
             'closed_tickets': closed_tickets
         }
         return render(request, 'dashboard/engineer_dashboard.html', context)
+    
     elif request.user.is_superuser:
-        
         return render(request, 'dashboard/admin_dashboard.html')
     

@@ -13,10 +13,12 @@ def register_customer(request):
             var.is_customer = True
             var.username = var.email
             var.save()
-            messages.success(request, 'account created, please login')
+            messages.success(request, 'Account created. Please login.')
             return redirect('accounts:login')
         else:
-            messages.warning(request, 'something went wrong, please check form errors')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error in {field}: {error}")
             return redirect('accounts:register_customer')
     else:
         form = RegisterCustomerForm()
@@ -34,16 +36,14 @@ def login_user(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            messages.warning(request, 'something went wrong, please check for errors')
+            messages.error(request, 'Invalid username or password.')
             return redirect('accounts:login')
-        
-
     else:
         return render(request, 'accounts/login.html')
     
 def logout_user(request):
     logout(request)
-    messages.success(request, 'Active session ended. login to continue')
+    messages.success(request, 'Active session ended. Login to continue.')
     return redirect('accounts:login')
 
 def homepage(request):

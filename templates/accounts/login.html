@@ -7,7 +7,7 @@
   <div class="container py-4 h-80">
     <div class="row d-flex justify-content-center align-items-center h-80">
       <div class="col col-xl-10">
-        <!-- Display messages here -->
+        {% comment %} <!-- Display messages here -->
         <div class="mb-4">
           {% if messages %}
             {% for message in messages %}
@@ -16,7 +16,7 @@
               </div>
             {% endfor %}
           {% endif %}
-        </div>
+        </div> {% endcomment %}
         <div class="card" style="border-radius: 1rem;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
@@ -27,7 +27,7 @@
               <div class="card-body p-4 p-lg-5 text-black">
                 
 
-                <form method="post" action="{% url 'accounts:login' %}">
+                <form method="post" >
                   {% csrf_token %}
 
                   <div class="d-flex align-items-center mb-3 pb-1">

@@ -41,10 +41,12 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'django.contrib.humanize',
+    
 
     'accounts',
     'dashboard',
     'tickets',
+    'sweetify'
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ticketingSystem.wsgi.application"
+
+
+# sweet alert
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
 
 # Database
@@ -136,3 +142,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = 'accounts.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
