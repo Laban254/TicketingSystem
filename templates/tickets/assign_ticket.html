@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container py-5">
   <div class="row justify-content-center align-items-center">
-    <div class="col-12 col-lg-8 col-xl-6">
+    <div class="col-12 col-lg-9 col-xl-8"> <!-- Adjusted grid classes -->
 
       <!-- Display messages here -->
       <div class="mb-4">
@@ -17,7 +17,7 @@
         {% endif %}
       </div>
       
-      <div class="card shadow-lg  rounded-lg">
+      <div class="card shadow-lg border-0 rounded-lg overflow-hidden my-6" style="max-width: 90%;"> <!-- Custom max-width -->
         <div class="row g-1">
           <div class="col-md-6">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
@@ -41,6 +41,11 @@
                   {{ form.engineer|add_class:"form-control form-control-lg" }}
                 </div>
 
+                <div class="mb-4">
+                  {{ form.other_field.label_tag }}
+                  {{ form.other_field|add_class:"form-control form-control-lg" }}
+                </div>
+
                 <div class="d-grid">
                   <button class="btn btn-dark btn-lg" type="submit">Assign Ticket</button>
                 </div>
@@ -54,3 +59,4 @@
   </div>
 </div>
 {% endblock %}
+}

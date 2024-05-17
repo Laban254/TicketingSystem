@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card mt-5">
+<div class="card mt-5 shadow-lg rounded-lg overflow-hidden">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-hover table-striped" style="color:#333; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Ticket ID</th>
@@ -16,13 +16,13 @@
                 </thead>
                 <tbody>
                     {% for ticket in tickets %}
-                    <tr>
-                        <td><a href="{% url 'ticket-details' ticket.ticket_id %}">{{ ticket.ticket_id }}</a></td>
+                    <tr onclick="location.href='{% url 'ticket-details' ticket.ticket_id %}'" style="cursor:pointer;">
+                        <td><a href="{% url 'ticket-details' ticket.ticket_id %}" style="color:#007bff;">{{ ticket.ticket_id }}</a></td>
                         <td>{{ ticket.ticket_title }}</td>
                         <td>{{ ticket.customer }}</td>
                         <td>{{ ticket.severity }}</td>
                         <td>
-                            <a href="{% url 'assign-ticket' ticket.ticket_id %}" >Assign to Engineer</a>
+                            <a href="{% url 'assign-ticket' ticket.ticket_id %}" class="btn btn-sm btn-outline-primary">Assign to Engineer</a>
                         </td>
                     </tr>
                     {% endfor %}

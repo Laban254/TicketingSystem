@@ -20,7 +20,21 @@
                     {% endif %}
                 </p>
                 <p class="card-text">Customer: {{ ticket.customer }}</p> <!-- Display customer name -->
-                <p class="card-text">Engineer: {{ ticket.engineer }}</p> <!-- Display engineer assigned -->
+                {% comment %} <p class="card-text">Engineer: {{ ticket.engineer }}</p> <!-- Display engineer assigned --> {% endcomment %}
+                <div>
+                            {% if ticket.severity == 'Critical' %}
+                                <i class="fas fa-skull-crossbones text-danger"></i>
+                            {% elif ticket.severity == 'High' %}
+                                <i class="fas fa-exclamation-triangle text-warning"></i>
+                            {% elif ticket.severity == 'Medium' %}
+                                <i class="fas fa-exclamation-circle text-info"></i>
+                            {% elif ticket.severity == 'Low' %}
+                                <i class="fas fa-info-circle text-success"></i>
+                            {% else %}
+                                <i class="fas fa-question-circle"></i>
+                            {% endif %}
+                             Severity:  {{ ticket.severity }}
+                </div>
             </div>
             <div class="card-footer">
                 <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">Ticket Details</a>

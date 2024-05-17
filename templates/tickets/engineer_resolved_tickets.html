@@ -6,7 +6,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for ticket in tickets %}
     <div class="col">
-        <div class="card h-100">
+        <div class="card h-90">
             <div class="card-body">
                 <h5 class="card-title">{{ ticket.ticket_title }}</h5>
                 <p class="card-text">
@@ -19,8 +19,8 @@
                     {% endif %}
                 </p>
                 <p class="card-text"><b>Customer:</b> {{ ticket.customer }}</p>
-                <p class="card-text"><b>Engineer:</b> {{ ticket.engineer }}</p>
-                <p class="card-text"><b>Priority:</b> {{ ticket.priority }}</p>
+                {% comment %} <p class="card-text"><b>Engineer:</b> {{ ticket.engineer }}</p> {% endcomment %}
+                {% comment %} <p class="card-text"><b>Severity:</b> {{ ticket.severity }}</p> {% endcomment %}
             </div>
             <div class="card-footer">
                 <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">Ticket Details</a>
