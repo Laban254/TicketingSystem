@@ -2,48 +2,66 @@
 {% load static %}
 
 {% block content %}
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section text-center py-5">
         <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-8 text-center">
-                    <h1 class="hero-title">Welcome to Your Ticketing System</h1>
-                    <p class="hero-subtitle">Efficiently manage tasks, track progress, and provide exceptional support.</p>
-                    <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title mb-4" style="font-family: 'Roboto Mono', monospace;">Welcome to Your Ticketing System</h1>
+                    <p class="hero-subtitle mb-4">Efficiently manage tasks, track progress, and provide exceptional support.</p>
+                    <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-lg">Get Started</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
+    <section class="features-section bg-light py-5">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
+                    <img src="{% static 'assets/admin.webp' %}" alt="Ticket Icon" class="img-fluid feature-image">
+                </div>
+                <div class="col-lg-8 mb-4">
+                    <div class="card feature-card border-0 shadow">
                         <div class="card-body text-center">
                             <i class="fas fa-ticket-alt feature-icon"></i>
-                            <h4 class="card-title">Create a Ticket</h4>
+                            <h4 class="card-title mt-3">Create a Ticket</h4>
                             <p class="card-text">Easily create a new ticket to report an issue or request assistance.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-8 order-lg-2 mb-4">
+                    <div class="card feature-card border-0 shadow">
                         <div class="card-body text-center">
                             <i class="fas fa-tasks feature-icon"></i>
-                            <h4 class="card-title">Assign Tasks</h4>
+                            <h4 class="card-title mt-3">Assign Tasks</h4>
                             <p class="card-text">Admins can assign tasks to specific engineers or support staff based on workload and expertise.</p>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4 order-lg-1 mb-4">
+                    <img src="{% static 'assets/admin.webp' %}" alt="Task Icon" class="img-fluid feature-image">
+                </div>
+            </div>
+            <div class="row align-items-center">
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
+                    <img src="{% static 'assets/admin.webp' %}" alt="Progress Icon" class="img-fluid feature-image">
+                </div>
+                <div class="col-lg-8 mb-4">
+                    <div class="card feature-card border-0 shadow">
                         <div class="card-body text-center">
-                            <i class="fas fa-history feature-icon"></i>
-                            <h4 class="card-title">Track Progress</h4>
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            <h4 class="card-title mt-3">Track Progress</h4>
                             <p class="card-text">Monitor the status of your tickets and track resolution progress.</p>
                         </div>
                     </div>
@@ -51,9 +69,34 @@
             </div>
         </div>
     </section>
-
 {% endblock %}
 
+
 {% block footer %}
-    {% include 'footer.html' %}
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <p>Email: info@ticketwise.com</p>
+                    <p>Phone: +254796200725</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Follow Us</h5>
+                    <a href="#" class="social-link me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link me-3"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Subscribe to our  Newsletter</h5>
+                    <form action="#" method="post">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" type="submit" id="button-addon2">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
