@@ -27,6 +27,20 @@
                     <h2 class="display-6">Quick Info</h2>
                     <p class="text-secondary">Detailed info</p>
                     <ul class="icon-list">
+                        <li>
+                            {% if ticket.severity == 'Critical' %}
+                                <i class="fas fa-skull-crossbones text-danger"></i>
+                            {% elif ticket.severity == 'High' %}
+                                <i class="fas fa-exclamation-triangle text-warning"></i>
+                            {% elif ticket.severity == 'Medium' %}
+                                <i class="fas fa-exclamation-circle text-info"></i>
+                            {% elif ticket.severity == 'Low' %}
+                                <i class="fas fa-info-circle text-success"></i>
+                            {% else %}
+                                <i class="fas fa-question-circle"></i>
+                            {% endif %}
+                            <b> Severity: </b> {{ ticket.severity }}
+                        </li>
                         <li> <i class="fas fa-ticket-alt"></i> <b> Ticket Unique ID: </b> {{ticket.ticket_id}} </li>
                         <li> <i class="fas fa-user"></i> <b> Customer: </b> {{ticket.customer}} </li>
                         <li> <i class="fas fa-tools"></i> <b> Engineer: </b> {{ticket.engineer}} </li>

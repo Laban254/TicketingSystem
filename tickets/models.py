@@ -19,9 +19,11 @@ class Ticket(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     is_resolved = models.BooleanField(default=False)
     SEVERITY_CHOICES = (
-        ('A', 'A'),
-        ('B', 'B'),
+        ('Critical', 'Critical'),
+        ('High', 'High'),
+        ('Medium', 'Medium'),
+        ('Low', 'Low'),
     )
-    severity = models.CharField(max_length=5, choices=SEVERITY_CHOICES, default='B')
+    severity = models.CharField(max_length=15, choices=SEVERITY_CHOICES, default='Low')
     is_assigned_to_engineer = models.BooleanField(default=False)
     resolution_steps = models.TextField()
