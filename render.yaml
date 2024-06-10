@@ -6,7 +6,7 @@ services:
     buildCommand: 
       - pip install --no-cache-dir -r requirements.txt
       - python manage.py collectstatic --noinput
-    startCommand: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    startCommand: gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
     envVars:
       - key: DJANGO_SECRET_KEY
         value: your-secret-key
