@@ -1,12 +1,8 @@
-# Use the official Python image from the Docker Hub
 FROM python:3.10-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-
-# Set the working directory
-WORKDIR /code
 
 # Install dependencies
 COPY requirements.txt /code/
@@ -15,13 +11,18 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . /code/
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# Install Nginx
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    apt-get clean
 
-# Expose the STATIC_ROOT directory as a volume
-VOLUME /code/staticfiles
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Start the application using gunicorn
-CMD gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
+# Expose port 80 (HTTP)
+EXPOSE 80
+
+# Start Nginx and Gunicorn
+CMD service nginx start && gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
 
 
