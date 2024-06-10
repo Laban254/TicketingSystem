@@ -15,8 +15,8 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
+# env_path = Path('.') / '.env'
+# load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +26,7 @@ BASE_DIR_S = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-u0x&^du(9wn8zb5kjgfy%)l5_a-z$b+u9)@pvv38-$_3yy33$="
+# SECRET_KEY = "django-insecure-u0x&^du(9wn8zb5kjgfy%)l5_a-z$b+u9)@pvv38-$_3yy33$="
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '0x&^du(9wn8zb5kjgfy%)l@pvv38-$_3yy33$=')
 
 # SECURITY WARNING: don't run with debug turned on in production!
