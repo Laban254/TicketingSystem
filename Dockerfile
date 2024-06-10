@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /code/
 
 # Copy .env file
-COPY .env /code/.env
+# COPY .env /code/.env
 
 # Collect static files
 RUN python3 manage.py collectstatic --noinput
