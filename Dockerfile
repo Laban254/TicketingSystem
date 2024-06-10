@@ -5,25 +5,20 @@ FROM python:3.10-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
+# Set the working directory
 WORKDIR /code
 
 # Install dependencies
 COPY requirements.txt /code/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# Copy the rest of the application code
 COPY . /code/
 
-# Copy .env file
-# COPY .env /code/.env
-
 # Collect static files
-RUN python3 manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
-# Expose port 8000
-EXPOSE 8000
+# Start the application using gunicorn
+CMD gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
 
-# Command to run the application
-# CMD ["gunicorn", "ticketingSystem.wsgi:application", "--bind", "0.0.0.0:8000"]
-CMD "gunicorn  ticketingSystem.wsgi:application --bind  0.0.0.0:8000"
+
