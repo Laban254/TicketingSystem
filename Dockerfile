@@ -1,30 +1,28 @@
-# Dockerfile
 # Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory
-WORKDIR /app
+# Set work directory
+WORKDIR /code
 
-# Install system dependencies
-RUN apt-get update \
-    && apt-get install -y gcc \
-    && apt-get install -y netcat
+# Install dependencies
+COPY requirements.txt /code/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
+# Copy project files
+COPY . /code/
 
-# Copy project
-COPY . /app/
+# Copy .env file
+COPY .env /code/.env
 
-# Add a wait-for-it script to ensure MySQL is ready before Django starts
-COPY wait-for-it.sh /wait-for-it.sh
-RUN chmod +x /wait-for-it.sh
+# Collect static files
+RUN python3 manage.py collectstatic --noinput
 
-# Run the application
-CMD ["sh", "-c", "/wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000"]
+# Expose port 8000
+EXPOSE 8000
+
+# Command to run the application
+CMD ["gunicorn", "ticketingSystem.wsgi:application", "--bind", "0.0.0.0:8000"]
