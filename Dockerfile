@@ -18,6 +18,9 @@ COPY . /code/
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
+# Expose the STATIC_ROOT directory as a volume
+VOLUME /code/staticfiles
+
 # Start the application using gunicorn
 CMD gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
 
