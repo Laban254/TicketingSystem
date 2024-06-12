@@ -3,9 +3,9 @@ FROM python:3.10-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-# Set the 
-WORKDIR /code
 
+# Set the work directory
+WORKDIR /code
 
 # Install dependencies
 COPY requirements.txt /code/
@@ -30,5 +30,3 @@ EXPOSE 80
 
 # Start Nginx and Gunicorn
 CMD service nginx start && gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
-
-

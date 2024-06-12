@@ -30,14 +30,14 @@ BASE_DIR_S = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '0x&^du(9wn8zb5kjgfy%)l@pvv38-$_3yy33$=')
 
 # # SECURITY WARNING: don't run with debug turned on in production!
-# # DEBUG = True
-# DEBUG = os.getenv('DEBUG', '0') == '1'
+# DEBUG = False
+DEBUG = os.getenv('DEBUG', '0') == '1'
 
 # ALLOWED_HOSTS = ['*']
 
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+# DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
 # Application definition
@@ -140,13 +140,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory where collectstatic will store files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static')  # Additional static files directories, if any
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_ROOT = os.path.join(STATIC_ROOT, 'assets')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
