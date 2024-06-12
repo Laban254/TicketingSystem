@@ -7,7 +7,7 @@ from django.db import IntegrityError
 load_dotenv()
 
 # Set DJANGO_SETTINGS_MODULE environment variable
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ticketingSystem.settings')
 
 # Configure Django settings
 import django
