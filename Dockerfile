@@ -11,10 +11,10 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Nginx and other required packages
+# Install Nginx, Supervisor, and other required packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends apt-utils && \
-    apt-get install -y nginx && \
+    apt-get install -y nginx supervisor && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -27,11 +27,13 @@ RUN python manage.py collectstatic --noinput
 # Copy Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# Copy Supervisord configuration
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 # Expose port 80 (HTTP)
 EXPOSE 80
 
-# Start Nginx and Gunicorn with migrations
-CMD service nginx start && \
-    python manage.py makemigrations && \
+# Run migrations and start services with Supervisord
+CMD python manage.py makemigrations && \
     python manage.py migrate && \
-    gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
+    /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
