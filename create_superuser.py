@@ -6,6 +6,13 @@ from django.db import IntegrityError
 # Load environment variables from .env file
 load_dotenv()
 
+# Set DJANGO_SETTINGS_MODULE environment variable
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project.settings')
+
+# Configure Django settings
+import django
+django.setup()
+
 # Getting name, email & password from env variables
 DJANGO_SU_NAME = os.getenv('DJANGO_SU_NAME')
 DJANGO_SU_EMAIL = os.getenv('DJANGO_SU_EMAIL')
