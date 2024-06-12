@@ -11,13 +11,16 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install Nginx and other required packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-utils && \
+    apt-get install -y nginx && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copy the rest of the application code
 COPY . /code/
 
-# Install Nginx
-RUN apt-get update && \
-    apt-get install -y nginx && \
-    apt-get clean
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
