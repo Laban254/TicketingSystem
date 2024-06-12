@@ -32,4 +32,4 @@ EXPOSE 80
 CMD service nginx start && \
     python manage.py makemigrations && \
     python manage.py migrate && \
-    gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
+    gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:80
