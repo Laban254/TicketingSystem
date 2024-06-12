@@ -18,6 +18,8 @@ COPY . /code/
 RUN apt-get update && \
     apt-get install -y nginx && \
     apt-get clean
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
 # Copy Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
