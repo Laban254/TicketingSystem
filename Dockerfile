@@ -29,7 +29,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 # Start Nginx and Gunicorn with migrations
-CMD sudo service nginx start && \
+CMD service nginx start && \
     python manage.py makemigrations && \
     python manage.py migrate && \
     gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
