@@ -1,16 +1,16 @@
 services:
   - type: web
-    name: ticketingapp
-    env: python
-    plan: starter
-    buildCommand: 
-      - pip install --no-cache-dir -r requirements.txt
-      - python manage.py collectstatic --noinput
-    startCommand: gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
+    name: django-app
+    env: docker
+    region: oregon
+    plan: free
+    buildCommand: ""
+    startCommand: ""
+    dockerfilePath: Dockerfile
     envVars:
-      - key: DJANGO_SECRET_KEY
-        value: your-secret-key
-      - key: DJANGO_DEBUG
-        value: 'False'
+      - key: DJANGO_SETTINGS_MODULE
+        value: ticketingSystem.settings
       - key: DJANGO_ALLOWED_HOSTS
-        value: '*'
+        value: "*"
+      - key: DEBUG
+        value: "0"

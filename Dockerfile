@@ -28,5 +28,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Expose port 80 (HTTP)
 EXPOSE 80
 
-# Start Nginx and Gunicorn
-CMD service nginx start && gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
+# Start Nginx and Gunicorn with migrations
+CMD service nginx start && \
+    python manage.py makemigrations && \
+    python manage.py migrate && \
+    gunicorn ticketingSystem.wsgi:application --bind 0.0.0.0:8000
