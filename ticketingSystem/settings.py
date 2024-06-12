@@ -141,8 +141,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory where collectstatic will store files
-STATIC_ROOT = "/var/www/studyHub.com/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory where collectstatic will store files
+# STATIC_ROOT = "/var/www/studyHub.com/static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')  # Additional static files directories, if any
 ]
