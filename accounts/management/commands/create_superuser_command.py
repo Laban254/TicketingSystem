@@ -1,10 +1,12 @@
 # accounts/management/commands/create_superuser_command.py
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
 from django.db import IntegrityError
 import os
+from django.contrib.auth import get_user_model
 from dotenv import load_dotenv
+
+User = get_user_model()
 
 class Command(BaseCommand):
     help = 'Creates a superuser using environment variables'
