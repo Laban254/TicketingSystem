@@ -36,4 +36,5 @@ EXPOSE 80
 # Run migrations and start services with Supervisord
 CMD python manage.py makemigrations && \
     python manage.py migrate && \
+    python /code/create_superuser.py && \
     /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
