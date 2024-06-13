@@ -1,47 +1,42 @@
 {% extends 'base.html' %}
-{% comment %} {% load widget_tweaks %} {% endcomment %}
-{%load static%}
+{% load static %}
 {% load widget_tweaks %}
 
 {% block content %}
-<section class="vh-80" style="background-color: #adb5bd">
-  <div class="container py-4 h-80">
+<section class="vh-100" style="background-color: #f8f9fa;">
+  <h5 class=" lead fw-bold text-center"> Test Admin Login</h5>
+                  <h6 class=" text-center">Email: admin@gmail.com | Password: Admin_pass</h6>
+                  <hr class="my-4">
+  <div class="container py-5 h-80">
     <div class="row d-flex justify-content-center align-items-center h-80">
-      <div class="col col-xl-10">
-        {% comment %} <!-- Display messages here -->
-        <div class="mb-4">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}" role="alert">
-                <b>{{ message }}</b>
+      <div class="col col-xl-8">
+        <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <img src="{% static 'assets/login.svg' %}" alt="login form" class="img-fluid" style="max-width: 100%;" />
+                </div>
               </div>
-            {% endfor %}
-          {% endif %}
-        </div> {% endcomment %}
-        <div class="card" style="border-radius: 1rem;">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="{% static 'assets/login.svg' %}" alt="login form" class="img-fluid mt-5" style="border-radius: 1rem 0 0 1rem;" />
-            </div>
-          
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
-                
-
-                <form method="post" action="{% url 'accounts:login' %}">
-                  {% csrf_token %}
-                  <div class="mb-3">
-                      {{ form.email.label_tag }}
-                      {{ form.email|add_class:"form-control" }}
-                  </div>
-                  <div class="mb-3">
-                      {{ form.password.label_tag }}
-                      {{ form.password|add_class:"form-control" }}
-                  </div>
-                  <button type="submit" class="btn btn-primary w-100">Login</button>
-              </form>
-
-
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <h2 class="text-center">Login</h2>
+                  
+                  <form method="post" action="{% url 'accounts:login' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.email.label_tag }}
+                        {{ form.email|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.password.label_tag }}
+                        {{ form.password|add_class:"form-control" }}
+                    </div>
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
