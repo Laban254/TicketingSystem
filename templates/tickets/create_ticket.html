@@ -8,7 +8,7 @@
   <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
     <div class="container">
       <div class="row gx-lg-5 align-items-center">
-        <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="col-lg-6 mb-5 mb-sm-0">
           <h1 class="my-5 display-3 fw-bold ls-tight">
             Welcome! Let's Get Started.<br />
             <span class="text-primary">Create Your Ticket Now</span>
@@ -19,7 +19,7 @@
           </p>
         </div>
 
-        <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="col-lg-6 mb-3 mb-lg-0">
           <div class="card">
             <div class="card-body py-5 px-md-5">
               <h2 class="fw-bold mb-4">Create Your Ticket</h2>
@@ -29,16 +29,16 @@
 
                   <div class="mb-4">
                     {{ form.ticket_title.label_tag }}
-                    {{ form.ticket_title|add_class:"form-control form-control-lg" }}
+                    {{ form.ticket_title|add_class:"form-control form-control-sm" }}
                   </div>
 
                   <div class="mb-4">
                     {{ form.ticket_description.label_tag }}
-                    {{ form.ticket_description|add_class:"form-control form-control-lg" }}
+                    {{ form.ticket_description|add_class:"form-control form-control-sm" }}
                   </div>
                   <div class="mb-4">
                     {{ form.severity.label_tag }}
-                    {{ form.severity|add_class:"form-control form-control-lg" }}
+                    {{ form.severity|add_class:"form-control form-control-sm" }}
                   </div>
 
                   <div class="d-grid">

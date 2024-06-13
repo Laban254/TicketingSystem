@@ -22,9 +22,8 @@ BASE_DIR_S = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-DEBUG = os.getenv('DEBUG', '0') == '1'
+DEBUG = True
+# DEBUG = os.getenv('DEBUG', '0') == '1'
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'django.contrib.humanize',
+    'bootstrap5',
     
 
     'accounts',
@@ -152,14 +152,11 @@ AUTHENTICATION_BACKENDS = [
     ]
 
 # email
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587  # TLS port (TLS encryption is required by Gmail)
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False  # SSL is not supported for Gmail SMTP
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Your Gmail address
-print("my email  ", EMAIL_HOST_USER )
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
 
