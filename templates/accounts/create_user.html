@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="d-flex justify-content-center mt-5">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h1 class="card-title text-center">Create User</h1>
+
+            <form method="post" action="{% url 'accounts:create_user' %}" id="userForm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.username.label_tag }}
+                    {{ form.username|add_class:"form-control" }}
+                    {{ form.username.errors }}
+                </div>
+                <div class="mb-3">
+                    {{ form.email.label_tag }}
+                    {{ form.email|add_class:"form-control" }}
+                    {{ form.email.errors }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label_tag }}
+                    {{ form.password|add_class:"form-control" }}
+                    {{ form.password.errors }}
+                </div>
+                <div class="mb-3">
+                    {{ form.role.label_tag }}
+                    {{ form.role|add_class:"form-select" }}
+                    {{ form.role.errors }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger mt-3">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
