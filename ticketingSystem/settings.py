@@ -31,6 +31,7 @@ BASE_DIR_S = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
+
 DEBUG = os.getenv('DEBUG', '0') == '1'
 
 # ALLOWED_HOSTS = ['*']
@@ -152,7 +153,13 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# AUTH_USER_MODEL = 'accounts.User'
 AUTH_USER_MODEL = 'accounts.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default backend for username authentication
+    'accounts.backends.EmailBackend',
+    ]
 
