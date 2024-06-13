@@ -10,6 +10,9 @@ from django.shortcuts import render, redirect
 from .forms import UserForm
 
 
+from django.core.mail import send_mail
+from .forms import UserForm
+
 def create_user(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
@@ -22,8 +25,14 @@ def create_user(request):
             elif role == 'support':
                 user.is_customer = False
                 user.is_engineer = True
+            
+            # Save user and set password
             user.set_password(form.cleaned_data['password'])
             user.save()
+
+            # Send email to user with their credentials
+            send_user_credentials_email(user.email, form.cleaned_data['password'])
+
             messages.success(request, 'User created successfully!')
             return redirect('dashboard:dashboard')
         else:
@@ -32,6 +41,13 @@ def create_user(request):
         form = UserForm()
     
     return render(request, 'accounts/create_user.html', {'form': form})
+
+def send_user_credentials_email(email, password):
+    subject = 'Your Account Credentials'
+    message = f'Hello,\n\nYour account has been created successfully.\n\nEmail: {email}\nPassword: {password}\n\nThank you!'
+    from_email = 'labanrotich6544@gmail.com'  
+    recipient_list = [email]
+    send_mail(subject, message, from_email, recipient_list)
 
 
 from .forms import LoginForm

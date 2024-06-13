@@ -13,32 +13,20 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os 
 from dotenv import load_dotenv
+load_dotenv()
 
-# Load environment variables from .env file
-# env_path = Path('.') / '.env'
-# load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR_S = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-u0x&^du(9wn8zb5kjgfy%)l5_a-z$b+u9)@pvv38-$_3yy33$="
-# SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '0x&^du(9wn8zb5kjgfy%)l@pvv38-$_3yy33$=')
 
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
 DEBUG = os.getenv('DEBUG', '0') == '1'
 
-# ALLOWED_HOSTS = ['*']
-
-
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
-# DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
 # Application definition
@@ -162,4 +150,16 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default backend for username authentication
     'accounts.backends.EmailBackend',
     ]
+
+# email
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # TLS port (TLS encryption is required by Gmail)
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False  # SSL is not supported for Gmail SMTP
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Your Gmail address
+print("my email  ", EMAIL_HOST_USER )
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
 
