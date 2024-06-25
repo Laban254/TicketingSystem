@@ -19,10 +19,10 @@ def create_user(request):
         if form.is_valid():
             user = form.save(commit=False)
             role = form.cleaned_data['role']
-            if role == 'customer':
+            if role == 'Employee':
                 user.is_customer = True
                 user.is_engineer = False
-            elif role == 'support':
+            elif role == 'Support':
                 user.is_customer = False
                 user.is_engineer = True
             

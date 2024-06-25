@@ -20,8 +20,8 @@ User = get_user_model()
 class UserForm(forms.ModelForm):
     ROLE_CHOICES = [
         ('', 'Select Role'),
-        ('customer', 'Customer'),
-        ('support', 'Support')
+        ('Employee', 'Employee'),
+        ('Support', 'Support')
     ]
     role = forms.ChoiceField(choices=ROLE_CHOICES, required=True, label='Role')
 

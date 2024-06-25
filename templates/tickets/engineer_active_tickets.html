@@ -25,7 +25,7 @@
                     <span class="badge bg-danger">Resolved</span>
                     {% endif %}
                 </p>
-                <p class="card-text">Customer: {{ ticket.customer }}</p> <!-- Display customer name -->
+                <p class="card-text">Employee: {{ ticket.customer }}</p> <!-- Display customer name -->
                 {% comment %} <p class="card-text">Engineer: {{ ticket.engineer }}</p> <!-- Display engineer assigned --> {% endcomment %}
                 <div>
                             {% if ticket.severity == 'Critical' %}

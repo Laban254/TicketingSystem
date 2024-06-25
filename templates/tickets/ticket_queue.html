@@ -15,7 +15,7 @@
                     <tr>
                         <th scope="col">Ticket ID</th>
                         <th scope="col">Ticket Title</th>
-                        <th scope="col">Customer</th>
+                        <th scope="col">Employee</th>
                         <th scope="col">Severity</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -28,7 +28,7 @@
                         <td>{{ ticket.customer }}</td>
                         <td>{{ ticket.severity }}</td>
                         <td>
-                            <a href="{% url 'assign-ticket' ticket.ticket_id %}" class="btn btn-sm btn-outline-primary">Assign to Engineer</a>
+                            <a href="{% url 'assign-ticket' ticket.ticket_id %}" class="btn btn-sm btn-outline-primary">Assign to Support</a>
                         </td>
                     </tr>
                     {% endfor %}
