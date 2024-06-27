@@ -41,7 +41,7 @@ Django, a powerful web framework for Python, combined with Docker's containeriza
 
 -   Automated emails for ticket creation and user account setup.
 
-  ##Ticketwise Models
+  ## Ticketwise Models
 
   ### Ticket Model
 
