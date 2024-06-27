@@ -1,6 +1,6 @@
 # Ticketing System: Powered by Django and Docker
 
-Powered by Django with HTML and CSS, **Ticketwise** facilitates ticket creation and management for employees. Support members efficiently handle assigned tickets, update statuses, and resolve issues with detailed steps. Administrators oversee operations via an admin dashboard, where they can add employees and support members and manage their login details. Docker ensures seamless deployment and scalability, optimizing customer support processes.
+Powered by Django with Bootstrap, HTML and CSS, **Ticketwise** facilitates ticket creation and management for employees. Support members efficiently handle assigned tickets, update statuses, and resolve issues with detailed steps. Administrators oversee operations via an admin dashboard, where they can add employees and support members and manage their login details. Docker ensures seamless deployment and scalability, optimizing customer support processes.
 
 ## Table of Contents
 
