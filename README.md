@@ -41,6 +41,38 @@ Django, a powerful web framework for Python, combined with Docker's containeriza
 
 -   Automated emails for ticket creation and user account setup.
 
+  ##Ticketwise Models
+
+  ### Ticket Model
+
+| Field                    | Type                                      | Description                         |
+|--------------------------|-------------------------------------------|-------------------------------------|
+| id                       | IntegerField                              | Primary Key                         |
+| customer                 | ForeignKey(User)                          | User who created the ticket         |
+| engineer                 | ForeignKey(User, null=True, blank=True)    | User assigned to the ticket (optional) |
+| ticket_id                | CharField(max_length=15, unique=True)     | Unique identifier for the ticket    |
+| ticket_title             | CharField(max_length=50)                  | Title of the ticket                 |
+| ticket_description       | TextField                                 | Description of the ticket           |
+| status                   | CharField(max_length=20, choices=STATUS_CHOICES, default='Pending') | Status of the ticket (Active, Pending, Resolved) |
+| created_on               | DateTimeField(auto_now_add=True)          | Date and time when the ticket was created |
+| last_modified            | DateTimeField(auto_now=True)              | Date and time of the last modification to the ticket |
+| is_resolved              | BooleanField(default=False)               | Indicates if the ticket is resolved |
+| severity                 | CharField(max_length=15, choices=SEVERITY_CHOICES, default='Low') | Severity of the ticket (Critical, High, Medium, Low) |
+| is_assigned_to_engineer  | BooleanField(default=False)               | Indicates if the ticket is assigned to an engineer |
+| resolution_steps         | TextField                                 | Steps taken to resolve the ticket   |
+
+### User Model
+
+| Field                    | Type                                      | Description                         |
+|--------------------------|-------------------------------------------|-------------------------------------|
+| id                       | IntegerField                              | Primary Key                         |
+| username                 | CharField(max_length=150, unique=True)    | Unique username                     |
+| email                    | EmailField                                | Email address                       |
+| first_name               | CharField(max_length=150)                 | First name                          |
+| last_name                | CharField(max_length=150)                 | Last name                           |
+
+
+
 ## Prerequisites
 
 -   Docker: Ensure Docker is installed on your machine. You can download it from  [Docker Hub](https://www.docker.com/products/docker-desktop).
