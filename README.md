@@ -48,8 +48,8 @@ Django, a powerful web framework for Python, combined with Docker's containeriza
 | Field                    | Type                                      | Description                         |
 |--------------------------|-------------------------------------------|-------------------------------------|
 | id                       | IntegerField                              | Primary Key                         |
-| customer                 | ForeignKey(User)                          | User who created the ticket         |
-| engineer                 | ForeignKey(User, null=True, blank=True)    | User assigned to the ticket (optional) |
+| employee                 | ForeignKey(User)                          | User who created the ticket         |
+| support                 | ForeignKey(User, null=True, blank=True)    | User assigned to the ticket (optional) |
 | ticket_id                | CharField(max_length=15, unique=True)     | Unique identifier for the ticket    |
 | ticket_title             | CharField(max_length=50)                  | Title of the ticket                 |
 | ticket_description       | TextField                                 | Description of the ticket           |
