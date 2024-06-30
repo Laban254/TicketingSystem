@@ -49,7 +49,7 @@ Django, a powerful web framework for Python, combined with Docker's containeriza
 |--------------------------|-------------------------------------------|-------------------------------------|
 | id                       | IntegerField                              | Primary Key                         |
 | employee                 | ForeignKey(User)                          | User who created the ticket         |
-| support                 | ForeignKey(User, null=True, blank=True)    | User assigned to the ticket (optional) |
+| support                 | ForeignKey(User, null=True, blank=True)    | User assigned to the ticket |
 | ticket_id                | CharField(max_length=15, unique=True)     | Unique identifier for the ticket    |
 | ticket_title             | CharField(max_length=50)                  | Title of the ticket                 |
 | ticket_description       | TextField                                 | Description of the ticket           |
@@ -58,7 +58,7 @@ Django, a powerful web framework for Python, combined with Docker's containeriza
 | last_modified            | DateTimeField(auto_now=True)              | Date and time of the last modification to the ticket |
 | is_resolved              | BooleanField(default=False)               | Indicates if the ticket is resolved |
 | severity                 | CharField(max_length=15, choices=SEVERITY_CHOICES, default='Low') | Severity of the ticket (Critical, High, Medium, Low) |
-| is_assigned_to_engineer  | BooleanField(default=False)               | Indicates if the ticket is assigned to an engineer |
+| is_assigned_to_support  | BooleanField(default=False)               | Indicates if the ticket is assigned to support|
 | resolution_steps         | TextField                                 | Steps taken to resolve the ticket   |
 
 ### User Model
