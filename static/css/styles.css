@@ -1,5 +1,12 @@
 /* General Styles */
-
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 56px; /* Adjust based on navbar height */
+}
+body.fixed-nav {
+    padding-top: 56px; /* Adjust based on navbar height */
+}
 
 /* Navbar Styles */
 .navbar {
@@ -66,7 +73,7 @@
 }
 
 .h-100 {
-    min-height: 0vh;
+    min-height: 100vh;
 }
 
 /* Footer Styles */
