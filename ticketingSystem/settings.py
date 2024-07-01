@@ -22,8 +22,8 @@ BASE_DIR_S = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.getenv('DEBUG', '0') == '1'
+DEBUG = True
+# DEBUG = os.getenv('DEBUG', '0') == '1'
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
