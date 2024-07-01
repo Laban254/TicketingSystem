@@ -2,6 +2,13 @@
 
 Powered by Django with Bootstrap, HTML and CSS, **Ticketwise** facilitates ticket creation and management for employees. Support members efficiently handle assigned tickets, update statuses, and resolve issues with detailed steps. Administrators oversee operations via an admin dashboard, where they can add employees and support members and manage their login details. Docker ensures seamless deployment and scalability, optimizing customer support processes.
 
+###Quick Demo
+
+https://github.com/Laban254/TicketingSystem/assets/64686919/d7e4d66f-58c9-42ef-9e3d-53e3241ce299
+
+
+
+
 ## Table of Contents
 
 -   [Introduction](https://www.phind.com/search?cache=qckgzmhpg0qrwoxsjy5zpalr#introduction)
