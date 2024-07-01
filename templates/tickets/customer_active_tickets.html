@@ -11,10 +11,10 @@
     </div>
     <div class="row row-cols-1 row-cols-md-4 g-4">
         {% for ticket in tickets %}
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">{{ ticket.ticket_title }}</h5>
+        <div class="col d-flex align-items-stretch">
+            <div class="card h-20 w-100 shadow-sm d-flex flex-column">
+                <div class="card-body flex-grow-1">
+                    <h5 class="card-title text-center">{{ ticket.ticket_title }}</h5>
                     <p class="card-text">
                         {% if ticket.status == 'Pending' %}
                         <span class="badge bg-warning">Pending</span>
@@ -25,7 +25,7 @@
                         {% endif %}
                     </p>
                 </div>
-                <div class="card-footer mt-auto bg-light">
+                <div class="card-footer bg-light">
                     <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">Ticket Details</a>
                     <small class="text-muted d-block mt-2">Created {{ ticket.created_on | naturaltime }}</small>
                 </div>

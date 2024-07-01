@@ -17,6 +17,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class UserForm(forms.ModelForm):
     ROLE_CHOICES = [
         ('', 'Select Role'),
@@ -24,6 +25,7 @@ class UserForm(forms.ModelForm):
         ('Support', 'Support')
     ]
     role = forms.ChoiceField(choices=ROLE_CHOICES, required=True, label='Role')
+    password = forms.CharField(widget=forms.PasswordInput, required=True, label='Password')
 
     class Meta:
         model = User
@@ -37,8 +39,9 @@ class UserForm(forms.ModelForm):
         cleaned_data = super().clean()
         role = cleaned_data.get('role')
         if not role:
-            self.add_error('role', "You must select either Customer or Support.")
+            self.add_error('role', "You must select either Employee or Support.")
         return cleaned_data
+
     
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=255)

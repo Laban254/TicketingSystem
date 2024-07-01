@@ -31,7 +31,7 @@
                         {% if request.user.is_customer %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarCustomerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-users"></i> Customer Tickets
+                            <i class="fas fa-users"></i> Employee Tickets
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{% url 'customer-active-tickets' %}">Active</a></li>
@@ -42,7 +42,7 @@
                         {% if request.user.is_engineer %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarEngineerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-tools"></i> Engineer Tickets
+                            <i class="fas fa-tools"></i> Support Tickets
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarEngineerDropdown">
                             <li><a class="dropdown-item" href="{% url 'engineer-active-tickets' %}">Active</a></li>
